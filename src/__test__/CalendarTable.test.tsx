@@ -1,6 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import CalendarTable from "../CalendarTable/index";
-import { calculateTotal, calculateTotalDayDuration, findLongestDayEventTitle, findTotalLongestEventTitle } from "../helpers";
+import {
+  calculateTotal,
+  calculateTotalDayDuration,
+  findLongestDayEventTitle,
+  findTotalLongestEventTitle,
+} from "../helpers";
 
 const mockEventsData = [
   {
@@ -65,9 +70,7 @@ describe("CalendarTable Component", () => {
       expect(numberOfEventsCell.textContent).toBe(day.events.length.toString());
 
       const totalDuration = await screen.findByTestId(`duration-cell-${index}`);
-      expect(totalDuration.textContent).toBe(
-        calculateTotalDayDuration(day.events).toString()
-      );
+      expect(totalDuration.textContent).toBe(calculateTotalDayDuration(day.events).toString());
 
       const longestDayEvent = await screen.findByTestId(`longest-event-cell-${index}`);
       expect(longestDayEvent.textContent).toBe(findLongestDayEventTitle(day.events));
@@ -81,14 +84,10 @@ describe("CalendarTable Component", () => {
     expect(totalRow).toBeInTheDocument();
 
     const totalNumberOfEvents = await screen.findByTestId("total-count");
-    expect(totalNumberOfEvents.textContent).toBe(
-      calculateTotal(mockEventsData, "count")?.toString()
-    );
+    expect(totalNumberOfEvents.textContent).toBe(calculateTotal(mockEventsData, "count")?.toString());
 
     const totalDurationOfEvents = await screen.findByTestId("total-duration");
-    expect(totalDurationOfEvents.textContent).toBe(
-      calculateTotal(mockEventsData, "duration")?.toString()
-    );
+    expect(totalDurationOfEvents.textContent).toBe(calculateTotal(mockEventsData, "duration")?.toString());
 
     const totalLongestEvent = await screen.findByTestId("total-longest-event");
     expect(totalLongestEvent.textContent).toBe(findTotalLongestEventTitle(mockEventsData));

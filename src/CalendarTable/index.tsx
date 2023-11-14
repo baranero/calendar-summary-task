@@ -40,7 +40,9 @@ const CalendarTable: React.FC<{ nextDaysEvents: DayEvents[] }> = ({ nextDaysEven
           {nextDaysEvents.map((dayEvents, index) => (
             <TableRow data-testid={`table-row-${index}`} key={index}>
               <StyledTableCell data-testid={`date-cell-${index}`}>{dayEvents.date}</StyledTableCell>
-              <StyledTableCell data-testid={`event-cell-${index}`}>{dayEvents.events ? dayEvents.events.length : 0}</StyledTableCell>
+              <StyledTableCell data-testid={`event-cell-${index}`}>
+                {dayEvents.events ? dayEvents.events.length : 0}
+              </StyledTableCell>
 
               <StyledTableCell data-testid={`duration-cell-${index}`}>
                 {calculateTotalDayDuration(dayEvents.events)}
