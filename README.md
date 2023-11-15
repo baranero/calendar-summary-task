@@ -1,5 +1,18 @@
 # Megaron S.A. — take-home recruitment task
 
+## Available scripts
+
+| Command        | Description                                                                                                    |
+|---------------------|----------------------------------------------------------------------------------------------------------------|
+| npm start           | Open local server   |
+| npm test            | Run tests           |
+
+## Live demo
+
+https://baranero.github.io/calendar-summary-task/
+
+##
+
 Hello and thank you for your interest in joining our team!
 
 We've prepared a very brief development challenge designed to test your proficiency in the basics of JavaScript, TypeScript and React.
