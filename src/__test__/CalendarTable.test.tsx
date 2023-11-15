@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import CalendarTable from "../CalendarTable/index";
+import CalendarTable from "../components/CalendarTable/index";
 import {
   calculateTotal,
   calculateTotalDayDuration,

@@ -6,7 +6,7 @@ import {
   calculateTotalDayDuration,
   findLongestDayEventTitle,
   findTotalLongestEventTitle,
-} from "../helpers";
+} from "../../helpers";
 
 import { DayEvents } from "../CalendarSummary";
 

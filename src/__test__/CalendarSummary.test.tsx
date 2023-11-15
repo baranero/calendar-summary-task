@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import CalendarSummary from "../CalendarSummary/index";
+import CalendarSummary from "../components/CalendarSummary/index";
 
 describe("CalendarSummary", () => {
   it("render header", () => {

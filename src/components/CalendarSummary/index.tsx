@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useState } from "react";
-import getCalendarEvents, { CalendarEvent } from "../api-client";
+import React, { useEffect, useState } from "react";
+import getCalendarEvents, { CalendarEvent } from "../../api-client";
 import CalendarTable from "../CalendarTable";
 
 export interface DayEvents {
@@ -12,30 +12,28 @@ const CalendarSummary: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const nextDays = useMemo(() => {
+  useEffect(() => {
     const currentDate = new Date();
-    return Array.from({ length: 7 }, (_, index) => {
+    const nextSevenDays = Array.from({ length: 7 }, (_, index) => {
       const nextDay = new Date(currentDate);
       nextDay.setDate(currentDate.getDate() + index);
       return nextDay;
     });
-  }, []);
 
-  const fetchDayEvents = async (day: Date) => {
-    try {
-      const dayEvents = await getCalendarEvents(day);
-      return { date: day.toLocaleDateString("fr-CA"), events: dayEvents };
-    } catch (error) {
-      setError(true);
-      throw new Error(`Error fetching day calendar events: ${error}`);
-    }
-  };
+    const fetchDayEvents = async (day: Date) => {
+      try {
+        const dayEvents = await getCalendarEvents(day);
+        return { date: day.toLocaleDateString("fr-CA"), events: dayEvents };
+      } catch (error) {
+        setError(true);
+        throw new Error(`Error fetching day calendar events: ${error}`);
+      }
+    };
 
-  useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const eventsArray = await Promise.all(nextDays.map(fetchDayEvents));
+        const eventsArray = await Promise.all(nextSevenDays.map(fetchDayEvents));
         setNextDaysEvents(eventsArray);
       } catch (error) {
         setError(true);
@@ -46,15 +44,15 @@ const CalendarSummary: React.FC = () => {
     };
 
     fetchData();
-  }, [nextDays]);
+  }, []);
 
   return (
-    <div>
+    <>
       <h2 style={{ textAlign: "center" }}>Calendar Summary</h2>
       {loading && <p style={{ textAlign: "center" }}>Loading...</p>}
       {error && <p style={{ textAlign: "center" }}>Something went wrong!</p>}
       {!loading && !error && <CalendarTable nextDaysEvents={nextDaysEvents} />}
-    </div>
+    </>
   );
 };
 

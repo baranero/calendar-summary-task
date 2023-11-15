@@ -1,4 +1,4 @@
-import { DayEvents } from "../CalendarSummary";
+import { DayEvents } from "../components/CalendarSummary";
 import { CalendarEvent } from "../api-client";
 
 export const calculateTotalDayDuration = (events: CalendarEvent[]) =>
