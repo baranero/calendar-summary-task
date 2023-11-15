@@ -1,0 +1,18 @@
+.App {
+  max-width: 1000px;
+  margin: auto;
+  padding: 0 1rem;
+}
+
+.calendar-header,
+.calendar-paragraph {
+  text-align: center;
+}
+
+.table-container {
+  box-shadow: 0 0 10px 10px #e0e0e0;
+}
+
+.table {
+  min-width: 1000px;
+}

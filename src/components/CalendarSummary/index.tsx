@@ -47,9 +47,9 @@ const CalendarSummary: React.FC = () => {
 
   return (
     <>
-      <h2 style={{ textAlign: "center" }}>Calendar Summary</h2>
-      {loading && <p style={{ textAlign: "center" }}>Loading...</p>}
-      {error && <p style={{ textAlign: "center" }}>Something went wrong!</p>}
+      <h2 className="calendar-header">Calendar Summary</h2>
+      {loading && <p className="calendar-paragraph">Loading...</p>}
+      {error && <p className="calendar-paragraph">Something went wrong!</p>}
       {!loading && !error && <CalendarTable nextDaysEvents={nextDaysEvents} />}
     </>
   );
