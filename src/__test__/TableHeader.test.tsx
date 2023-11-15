@@ -1,9 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import TableHeader from "../components/TableHeader";
+import { Table } from "@mui/material";
 
 describe("TableHeader Component", () => {
   it("render table header", () => {
-    render(<TableHeader />);
+    render(
+      <Table>
+        <TableHeader />
+      </Table>
+    );
     const headerDateCell = screen.getByText(/date/i);
     expect(headerDateCell).toBeInTheDocument();
 

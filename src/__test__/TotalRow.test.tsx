@@ -1,14 +1,18 @@
 import { render, screen } from "@testing-library/react";
-import {
-  calculateTotal,
-  findTotalLongestEventTitle,
-} from "../helpers";
+import { calculateTotal, findTotalLongestEventTitle } from "../helpers";
 import { mockEventsData } from "./CalendarSummary.test";
 import TotalRow from "../components/TotalRow";
+import { Table, TableBody } from "@mui/material";
 
 describe("TotalRow Component", () => {
   test("renders total row with correct data", async () => {
-    render(<TotalRow nextDaysEvents={mockEventsData} />);
+    render(
+      <Table>
+        <TableBody>
+          <TotalRow nextDaysEvents={mockEventsData} />
+        </TableBody>
+      </Table>
+    );
 
     const totalRow = await screen.findByTestId("total-row");
     expect(totalRow).toBeInTheDocument();
