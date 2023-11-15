@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import getCalendarEvents, { CalendarEvent } from "../../api-client";
 import CalendarTable from "../CalendarTable";
+import { addDays, format } from "date-fns";
 
 export interface DayEvents {
   date: string;
@@ -14,21 +15,19 @@ const CalendarSummary: React.FC = () => {
 
   useEffect(() => {
     const currentDate = new Date();
-    const nextSevenDays = Array.from({ length: 7 }, (_, index) => {
-      const nextDay = new Date(currentDate);
-      nextDay.setDate(currentDate.getDate() + index);
-      return nextDay;
-    });
+const nextSevenDays = Array.from({ length: 7 }, (_, index) => {
+  return addDays(currentDate, index);
+});
 
-    const fetchDayEvents = async (day: Date) => {
-      try {
-        const dayEvents = await getCalendarEvents(day);
-        return { date: day.toLocaleDateString("fr-CA"), events: dayEvents };
-      } catch (error) {
-        setError(true);
-        throw new Error(`Error fetching day calendar events: ${error}`);
-      }
-    };
+const fetchDayEvents = async (day: Date) => {
+  try {
+    const dayEvents = await getCalendarEvents(day);
+    return { date: format(day, 'yyyy-MM-dd'), events: dayEvents };
+  } catch (error) {
+    setError(true);
+    throw new Error(`Error fetching day calendar events: ${error}`);
+  }
+};
 
     const fetchData = async () => {
       setLoading(true);
